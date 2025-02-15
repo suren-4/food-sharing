@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Food Donation Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2D3250;
+            --secondary: #424769;
+            --accent: #F6B17A;
+            --accent-dark: #F68657;
+            --text: #2D3250;
+            --light: #F7E6C4;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--gradient);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+            animation: loading 2s ease-in-out infinite;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: transparent;
+            border: none;
+            color: var(--primary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo i {
+            font-size: 48px;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .form-title {
+            color: var(--secondary);
+            font-size: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent);
+            font-size: 18px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(246, 177, 122, 0.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            background: var(--accent);
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        button:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(246, 177, 122, 0.3);
+        }
+
+        .message {
+            padding: 15px;
+            border-radius: 12px;
+            margin: 15px 0;
+            font-size: 14px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .error {
+            background: #ffe5e5;
+            color: #ff3333;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+        }
+
+        .choice-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .choice-btn {
+            padding: 20px;
+            font-size: 18px;
+            border-radius: 15px;
+            background: var(--white);
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .choice-btn:hover {
+            background: var(--accent);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="back-btn" onclick="window.location.href='index.html'">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+
+        <!-- Remove userChoiceScreen and keep only login form -->
+        <div id="loginScreen">
+            <div class="logo">
+                <i class="fas fa-hand-holding-heart"></i>
+                <h2>Welcome Back</h2>
+            </div>
+
+            <div id="errorMessage" class="message error hidden">
+                <i class="fas fa-exclamation-circle"></i>
+                <span></span>
+            </div>
+
+            <div id="loginForm">
+                <h3 class="form-title">Login to Your Account</h3>
+                
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="loginUsername" placeholder="Enter your username">
+                </div>
+
+                <button onclick="loginUser()">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include your scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7/dist/umd/supabase.min.js"></script>
+    <script>
+        const supabaseUrl = 'https://rqkibwoaknxyviwoesmr.supabase.co'
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJxa2lid29ha254eXZpd29lc21yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzkwNDE4NDAsImV4cCI6MjA1NDYxNzg0MH0.KN_3TaIl2RAu-fDeLq3MH76LOf3GNgu2Ybjkc8_2WHQ'
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey)
+
+        async function loginUser() {
+            try {
+                const username = document.getElementById('loginUsername').value.trim();
+                if (!username) {
+                    throw new Error('Please enter username');
+                }
+
+                // First check donor table
+                let { data: donorData, error: donorError } = await supabase
+                    .from('donor')
+                    .select('*')  // Select all fields
+                    .eq('hotelname', username)
+                    .maybeSingle(); // Use maybeSingle instead of single to avoid errors
+
+                // If found in donor table
+                if (donorData) {
+                    sessionStorage.setItem('currentUser', JSON.stringify({
+                        hotelname: donorData.hotelname,
+                        userType: 'donor',
+                        fssai_number: donorData.fssai_number
+                    }));
+                    showMessage('Login successful! Redirecting...', true);
+                    setTimeout(() => {
+                        window.location.href = 'donor.html';
+                    }, 1500);
+                    return;
+                }
+
+                // If not found in donor table, check receiver table
+                let { data: receiverData, error: receiverError } = await supabase
+                    .from('receiver')
+                    .select('*')  // Select all fields
+                    .eq('username', username)
+                    .maybeSingle(); // Use maybeSingle instead of single
+
+                // If found in receiver table
+                if (receiverData) {
+                    sessionStorage.setItem('currentUser', JSON.stringify({
+                        username: receiverData.username,
+                        organization_name: receiverData.organization_name,
+                        userType: 'receiver'
+                    }));
+                    showMessage('Login successful! Redirecting...', true);
+                    setTimeout(() => {
+                        window.location.href = 'receiver.html';
+                    }, 1500);
+                    return;
+                }
+
+                // If not found in either table
+                if (!donorData && !receiverData) {
+                    throw new Error('User not found. Please check your username or register.');
+                }
+
+            } catch (error) {
+                console.error('Login error:', error);
+                showMessage(error.message);
+            }
+        }
+
+        function showMessage(message, isSuccess = false) {
+            const messageDiv = document.getElementById("errorMessage");
+            messageDiv.classList.remove('hidden');
+            messageDiv.style.background = isSuccess ? '#e8f5e9' : '#ffe5e5';
+            messageDiv.style.color = isSuccess ? '#2e7d32' : '#ff3333';
+            messageDiv.querySelector('i').className = isSuccess ? 
+                'fas fa-check-circle' : 'fas fa-exclamation-circle';
+            messageDiv.querySelector('span').textContent = message;
+
+            // Make error message more prominent
+            messageDiv.style.padding = '15px 20px';
+            messageDiv.style.fontSize = '16px';
+            messageDiv.style.fontWeight = '500';
+            messageDiv.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+        }
+    </script>
+</body>
+</html> 

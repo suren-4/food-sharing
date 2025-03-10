@@ -1,4 +1,4 @@
-echo "# 🍽️ Food Sharing Web Application  
+# 🍽️ Food Sharing Web Application  
 
 The **Food Sharing Web Application** aims to reduce food waste by connecting certified restaurants with users who can receive leftover food for free. The platform ensures that donors are certified restaurants and allows both individuals and organizations to collect food responsibly.  
 

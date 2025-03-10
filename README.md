@@ -63,4 +63,4 @@ The **Food Sharing Web Application** aims to reduce food waste by connecting cer
    npm start  
    \`\`\`  
 
-5. Open the application in your browser at:  
+  
